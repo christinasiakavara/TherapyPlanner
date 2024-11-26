@@ -11,3 +11,15 @@ CREATE TABLE User (
     Role INT,
     CONSTRAINT CHK_Role CHECK (Role=1 OR Role=2)
 );
+
+CREATE TABLE Psychologist (
+    PsychologistID INT PRIMARY KEY NOT NULL ,
+    Bio TEXT(5000), --NA TO DOYME--
+    ratings DECIMAL(3,2),
+    FOREIGN KEY (PsychologistID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Patient (
+    PatientID INT NOT NULL PRIMARY KEY,
+    FOREIGN KEY (PatientID) REFERENCES User(UserID)
+);

@@ -23,3 +23,18 @@ CREATE TABLE Patient (
     PatientID INT NOT NULL PRIMARY KEY,
     FOREIGN KEY (PatientID) REFERENCES User(UserID)
 );
+
+CREATE TABLE Appointment (
+    AppointmentID INT PRIMARY KEY,
+    PatientID INT NOT NULL FOREIGN KEY REFERENCES Patient(PatientID),
+    PsychologistID INT NOT NULL FOREIGN KEY REFERENCES Psychologist(PsychologistID),
+    AvailableHoursAndDays DATETIME,
+    RequestedHoursAndDays DATETIME
+);
+
+CREATE TABLE SCHEDULE (
+    ScheduleID INT PRIMARY KEY,
+    PsychologistID INT NOT NULL,
+    FOREIGN KEY (PsychologistID) REFERENCES Psychologist(PsychologistID),
+    AvailableHoursAndDays FOREIGN KEY REFERENCES Appointment(AvailableHoursAndDays)
+);

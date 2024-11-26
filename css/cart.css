@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url(base/header.css);
+@import url(layout/section.css);
+@import url(shared/input.css);
+@import url(custom/product-card.css);
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #bcc3ca !important;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+
+}
+
+main {
+  flex: 1;
+}
+
+
+main.page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+div.login-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  min-width: 500px;
+  width: 500px;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ededed;
+  border-radius: 25px;
+  box-shadow: 4px 4px 4px -4px rgba(0, 0, 0, 0.1);
+}
+
+div.login-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+div.login-header > h3 {
+  font-weight: bold;
+  margin-bottom: -1px;
+  font-size: 24pt;
+  text-transform: uppercase;
+}
+
+div.login-header > p {
+  color: #656565;
+  font-size: 13.75pt;
+  font-weight: 600;
+}
+
+form.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form > div.login-form-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form > div.login-form-actions > a.button-link {
+  display: block;
+}
+
+form > div.login-form-actions > a.button-link > button {
+  width: 100%;
+}
+
+form > div.login-form-actions > a.button-link > button > span {
+  font-weight: 600;
+}
+
+.btn-primary, 
+.btn-success { 
+  background-color: #1e354d !important;
+  border-color: #2b598b !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover, 
+.btn-success:hover {
+  background-color: #426e9c !important; 
+  border-color: #426e9c !important;
+}
+
+.cart-product-image {
+  width: 80px;
+  height: 80px; 
+  object-fit: cover; 
+  border-radius: 5px;
+}

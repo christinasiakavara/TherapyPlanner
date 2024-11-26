@@ -1,0 +1,32 @@
+div.extended-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  background-color: #ffffff;
+  border-radius: 100px;
+  padding: 6px 10px 6px 10px;
+  overflow: hidden;
+}
+
+input.extended-input {
+  border: none;
+  outline: none;
+  font-size: 12pt;
+  width: 180px;
+  transition: all 0.12s ease-in-out;
+}
+
+input.extended-input:focus {
+  width: 250px;
+}
+
+/* Bordered */
+div.extended-input-wrapper.bordered {
+  border: 1px solid #dedede;
+  border-radius: 8px;
+}
+
+div.extended-input-wrapper.bordered > input {
+  width: 250px;
+}

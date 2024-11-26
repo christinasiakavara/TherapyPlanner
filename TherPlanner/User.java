@@ -7,6 +7,7 @@ public class User {
 	private String email;
 	private String username;
 	private String password;
+    private String number;
 
     /**
      * Full constuctor
@@ -16,6 +17,7 @@ public class User {
      * @param email
      * @param username
      * @param password
+     * @param number
      */
     public User(String firstname, String lastname, String email, String username, String password, String number) {
         this.firstname = firstname;

@@ -14,7 +14,7 @@ CREATE TABLE User (
 
 CREATE TABLE Psychologist (
     PsychologistID INT PRIMARY KEY NOT NULL ,
-    Bio TEXT(5000), --NA TO DOYME--
+    Bio TEXT(5000), 
     ratings DECIMAL(3,2),
     FOREIGN KEY (PsychologistID) REFERENCES User(UserID)
 );

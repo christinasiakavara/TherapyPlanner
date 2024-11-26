@@ -17,12 +17,13 @@ public class User {
      * @param username
      * @param password
      */
-    public User(String firstname, String lastname, String email, String username, String password) {
+    public User(String firstname, String lastname, String email, String username, String password, String number) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.number = number;
     }
 
     public String getFirstname() {
@@ -65,5 +66,11 @@ public class User {
         return password;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
+    public String getNumber() {
+        return number;
+    }
 }

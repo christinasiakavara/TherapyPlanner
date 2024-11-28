@@ -11,7 +11,7 @@ public class User {
     private String address;
     private String birthdate;
     private int userid ;
-   
+    private int roleID; // 1 = "Psychologist" or 2 = "Client"
 
     /**
      * Full constuctor
@@ -23,7 +23,7 @@ public class User {
      * @param password
      * @param number
      */
-    public User(String firstname, String lastname, String email, String username, String password, String number,String address, String birthdate, int userid) {
+    public User(String firstname, String lastname, String email, String username, String password, String number,String address, String birthdate, int userid, String role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -33,7 +33,7 @@ public class User {
         this.address = address;
         this.birthdate = birthdate;
         this.userid = userid;
-
+        setRoleID(roleID);
     }
 
     public String getFirstname() {
@@ -100,4 +100,28 @@ public class User {
     }
     public int getUserid() {
         return userid;
+    }
+    public int getRoleID() {
+        return role;
+    }
+
+    public void setRoleID(int roleID) {
+        if (roleID == 1 || roleID == 2 || roleID == 3) {
+            this.roleID = roleID;
+        } else {
+            throw new IllegalArgumentException("RoleID must be 1 for Psychologist or 2 for Patient or 3 for Admin).");
+        }
+    }
+
+    //Get role name as String
+    public String getRoleName() {
+        if (roleID == 1){
+            return "Psychologist";
+        } else if (roleID == 2){
+            return "Patient";
+        } else {
+            return "Admin";
+        }
+    }
+    
 }

@@ -1,7 +1,11 @@
-package exercise2_2024_2025_8210220;
+package TherPlanner;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
+import User.java;
+import AuthenticationException.java;
 
 /**
  * UserService provides all the necessary methods related to users.
@@ -37,21 +41,20 @@ public class UserDAO {
 	 * @return User, the User Object
 	 * @throws Exception, if the credentials are not valid or an error occurs.
 	 */
-    public User authenticate(String username, String password) throws Exception {
+    public User authenticate(String username, String password) throws AuthenticationException, NoSuchAlgorithmException {
 
         List<User> users = getUsers();
 
-		for (User user: users) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(hashPassword(password))) {
+                return user; // credentials are valid, so return the User object
+            }
+        }
 
-			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-				return user; // credentials are valid, so return the User object
-			}
-
-		}
-		//credentials are Wrong, so throw an error
-		throw new Exception("Wrong username or password");
-
+        throw new AuthenticationException("Invalid username or password. Please try again."); //credentials are Wrong, so throw an error
     } // End of authenticate
 
 
 } //End of class
+
+

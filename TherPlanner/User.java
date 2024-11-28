@@ -10,6 +10,8 @@ public class User {
     private String number;
     private String address;
     private String birthdate;
+    private int userid ;
+   
 
     /**
      * Full constuctor
@@ -21,7 +23,7 @@ public class User {
      * @param password
      * @param number
      */
-    public User(String firstname, String lastname, String email, String username, String password, String number,String address, String birthdate) {
+    public User(String firstname, String lastname, String email, String username, String password, String number,String address, String birthdate, int userid) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -30,6 +32,7 @@ public class User {
         this.number = number;
         this.address = address;
         this.birthdate = birthdate;
+        this.userid = userid;
 
     }
 
@@ -80,16 +83,21 @@ public class User {
     public String getNumber() {
         return number;
     }
-    public String setAddress(String address) {
+    public void setAddress(String address) {
         this.address= address;
     }
     public String getAddress() {
         return address;
     }
-    public String setBirthdate( String birthdate) {
+    public void setBirthdate( String birthdate) {
         this.birthdate =birthdate;
     }
     public String getBirthdate() {
-        return birthdate;
+        return birthdate; 
     }
+    public void setUserid( int userid) {
+        this.userid = userid;
+    }
+    public int getUserid() {
+        return userid;
 }

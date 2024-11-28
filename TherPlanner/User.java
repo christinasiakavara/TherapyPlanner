@@ -33,7 +33,7 @@ public class User {
         this.address = address;
         this.birthdate = birthdate;
         this.userid = userid;
-        setRoleID(roleID);
+        this.roleID = roleID;
     }
 
     public String getFirstname() {
@@ -102,7 +102,7 @@ public class User {
         return userid;
     }
     public int getRoleID() {
-        return role;
+        return roleID;
     }
 
     public void setRoleID(int roleID) {
@@ -119,8 +119,10 @@ public class User {
             return "Psychologist";
         } else if (roleID == 2){
             return "Patient";
-        } else {
+        } else if (roleID == 3){
             return "Admin";
+        } else {
+            throw new IllegalStateException("Invalid roleID: " + roleID);
         }
     }
     

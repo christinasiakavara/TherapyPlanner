@@ -3,6 +3,7 @@ package DETsCode.Psychologist;
 import DETsCode.Timeslot.Timeslot;
 import DETsCode.User.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Psychologist extends User {
@@ -14,11 +15,11 @@ public class Psychologist extends User {
 
     private List<Float> rating;
 
-    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, String specialization, List<Timeslot> availability, List<Float> rating) {
+    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, String specialization, List<Float> rating) {
         super(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID);
         this.psychologistId = psychologistId;
         this.specialization = specialization;
-        this.availability = availability;
+        this.availability = new ArrayList<>();
         this.rating = rating;
     }
 

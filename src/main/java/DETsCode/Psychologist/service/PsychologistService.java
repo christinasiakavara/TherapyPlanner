@@ -16,6 +16,7 @@ public class PsychologistService {
         if (!validateTimeslot(psychologist, timeslot)) {
             throw new IllegalArgumentException("The timeslot requested ( " + timeslot.toString() + ")overlaps the existing timeslots of the psychologist");
         }
+        psychologist.getAvailability().add(timeslot);
     }
 
     void viewAppointments(Psychologist psychologist) {

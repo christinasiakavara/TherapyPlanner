@@ -2,9 +2,12 @@ package DETsCode.Psychologist.service;
 
 import DETsCode.Psychologist.Psychologist;
 import DETsCode.Timeslot.Timeslot;
+import java.util.List;
+import java.util.ArrayList;
 
 public class PsychologistService {
 
+    private List<String> notes = new ArrayList<>();
     /**
      * Validates if the provided timeslot is available and adds it to the list of timeslots
      * of the psychologist
@@ -32,4 +35,12 @@ public class PsychologistService {
         return true;
     }
 
+    private void addnotes(String note) {
+        if (note == null) {
+            System.out.println("Note cannot be null");
+        }
+        notes.add(note);
+        System.out.println("Note added successfully" + note);
+
+    }
 }

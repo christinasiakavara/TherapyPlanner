@@ -11,12 +11,15 @@ public class Psychologist extends User {
 
     private String specialization;
 
+    private String bio;
+
     private List<Timeslot> availability;
 
     private List<Float> rating;
 
-    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, String specialization, List<Float> rating) {
+    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, String specialization, List<Float> rating, String bio) {
         super(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID);
+        this.bio = bio;
         this.psychologistId = psychologistId;
         this.specialization = specialization;
         this.availability = new ArrayList<>();
@@ -29,6 +32,14 @@ public class Psychologist extends User {
 
     public void setPsychologistId(int psychologistId) {
         this.psychologistId = psychologistId;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getSpecialization() {
@@ -59,6 +70,8 @@ public class Psychologist extends User {
     public String toString() {
         return "Psychologist{" +
                 "psychologistId=" + psychologistId +
+ "Bio" + bio
+                +
                 ", specialization='" + specialization + '\'' +
                 ", availability=" + availability +
                 ", rating=" + rating +

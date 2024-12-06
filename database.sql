@@ -27,5 +27,8 @@ CREATE TABLE Patient (
 CREATE TABLE Payment (
     PaymentID INT NOT NULL,
     Amount FLOAT NOT NULL,
-    PaymentDate DATETIME
-)
+    PaymentDate DATETIME,
+    PatientID INT FOREIGN KEY REFERENCES Patient(PatientID)
+);
+
+

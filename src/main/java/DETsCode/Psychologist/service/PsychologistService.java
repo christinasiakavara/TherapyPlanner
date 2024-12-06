@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class PsychologistService {
 
     private List<String> notes = new ArrayList<>();
+
+
     /**
      * Validates if the provided timeslot is available and adds it to the list of timeslots
      * of the psychologist

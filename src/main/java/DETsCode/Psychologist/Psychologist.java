@@ -17,6 +17,7 @@ public class Psychologist extends User {
 
     private List<Float> rating;
 
+
     public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, String specialization, List<Float> rating, String bio) {
         super(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID);
         this.bio = bio;

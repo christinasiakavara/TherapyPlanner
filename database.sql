@@ -1,34 +1,51 @@
-CREATE TABLE User (
-    UserID INT PRIMARY KEY NOT NULL,
-    FirstName VARCHAR(15),
-    Surname VARCHAR(30),
-    UserName VARCHAR(10) NOT NULL,
-    Password VARCHAR(20) NOT NULL,
-    Email VARCHAR(30) NOT NULL,
-    Phone INT NOT NULL,
-    Address VARCHAR(50),
-    BirthDate DATE,
-    Role INT,
-    CONSTRAINT CHK_Role CHECK (Role=1 OR Role=2)
+CREATE DATABASE TherapyPlannerDB;
+
+CREATE TABLE users
+(
+    id         INT PRIMARY KEY NOT NULL,
+    first_name VARCHAR(15),
+    last_name  VARCHAR(30),
+    username   VARCHAR(10)     NOT NULL,
+    password   VARCHAR(20)     NOT NULL,
+    email      VARCHAR(30)     NOT NULL,
+    phone      INT             NOT NULL,
+    address    VARCHAR(50),
+    birthdate  DATE,
+    role       INT,
+    CONSTRAINT CHK_Role CHECK (Role = 1 OR Role = 2)
 );
 
-CREATE TABLE Psychologist (
-    PsychologistID INT PRIMARY KEY NOT NULL ,
-    Bio TEXT(5000),
-    ratings DECIMAL(3,2),
-    FOREIGN KEY (PsychologistID) REFERENCES User(UserID)
+CREATE TABLE psychologists
+(
+    id      INT PRIMARY KEY NOT NULL,
+    bio     TEXT(5000),
+    ratings DECIMAL(3, 2),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE Patient (
-    PatientID INT NOT NULL PRIMARY KEY,
-    FOREIGN KEY (PatientID) REFERENCES User(UserID)
+
+CREATE TABLE ratings (
+    id INT PRIMARY KEY NOT NULL,
+    value DECIMAL(3,2),
+    psychologist_id INT,
+    FOREIGN KEY (psychologist_id) REFERENCES psychologists (id)
+)
+
+CREATE TABLE patients
+(
+    id      INT NOT NULL PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE Payment (
-    PaymentID INT NOT NULL,
-    Amount FLOAT NOT NULL,
-    PaymentDate DATETIME,
-    PatientID INT FOREIGN KEY REFERENCES Patient(PatientID)
+CREATE TABLE payments
+(
+    id           INT PRIMARY KEY NOT NULL,
+    amount       FLOAT           NOT NULL,
+    payment_date DATETIME,
+    patient_id   INT,
+    FOREIGN KEY (patient_id) REFERENCES patients (id)
 );
 
 

@@ -62,8 +62,8 @@ public class TherSession {
         return "TherSession{" +
                 "sessionID=" + sessionID +
                 ", dateTime=" + getFormattedDateTime() +
-                ", patient=" + patient +
-                ", psychologist=" + psychologist +
+                ", patient=" + (patient != null ? patient.toString() : "No patient assigned") +
+                ", psychologist=" + (psychologist != null ? psychologist.toString() : "No psychologist assigned") +
                 '}';
     }
 

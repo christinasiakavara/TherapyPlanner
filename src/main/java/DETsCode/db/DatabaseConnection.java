@@ -34,3 +34,13 @@ public class DatabaseConnection {
         return connection;
     }
 }
+
+public void close() throws SQLException {
+        try {
+            if(connection!=null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Could not close connection with the Database Server: " + e.getMessage());
+        } 
+    }

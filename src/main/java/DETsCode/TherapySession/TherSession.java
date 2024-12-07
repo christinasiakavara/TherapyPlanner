@@ -1,4 +1,4 @@
-package DETsCode.TherapySession;
+package main.java.DETsCode.TherapySession;
 
 import DETsCode.Patient.Patient;
 import DETsCode.Psychologist.Psychologist;

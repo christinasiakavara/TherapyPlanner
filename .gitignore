@@ -1,2 +1,5 @@
-target/*
+target/
 .mvn/*
+.idea
+!**/src/main/**/target/
+!**/src/test/**/target/

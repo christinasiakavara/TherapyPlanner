@@ -33,9 +33,8 @@ public class DatabaseConnection {
     public Connection getConnection() {
         return connection;
     }
-}
 
-public void close() throws SQLException {
+    public void close() throws SQLException {
         try {
             if(connection!=null) {
                 connection.close();
@@ -44,3 +43,4 @@ public void close() throws SQLException {
             throw new SQLException("Could not close connection with the Database Server: " + e.getMessage());
         } 
     }
+}

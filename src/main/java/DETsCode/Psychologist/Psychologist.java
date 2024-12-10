@@ -71,7 +71,7 @@ public class Psychologist extends User {
     public String toString() {
         return "Psychologist{" +
                 "psychologistId=" + psychologistId +
- "Bio" + bio
+                "Bio" + bio
                 +
                 ", specialization='" + specialization + '\'' +
                 ", availability=" + availability +

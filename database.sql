@@ -25,14 +25,15 @@ CREATE TABLE psychologists
 );
 
 
-CREATE TABLE ratings (
+CREATE TABLE ratings
+(
     id INT PRIMARY KEY NOT NULL,
     value DECIMAL(3,2),
     psychologist_id INT,
     FOREIGN KEY (psychologist_id) REFERENCES psychologists (id)
 )
 
-CREATE TABLE patients
+CREATE TABLE patient
 (
     id      INT NOT NULL PRIMARY KEY,
     user_id INT,

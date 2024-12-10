@@ -18,11 +18,10 @@ public class Psychologist extends User {
     private List<Float> rating;
 
 
-    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, String specialization, List<Float> rating, String bio) {
+    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, List<Float> rating, String bio) {
         super(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID);
         this.bio = bio;
         this.psychologistId = psychologistId;
-        this.specialization = specialization;
         this.availability = new ArrayList<>();
         this.rating = rating;
     }
@@ -41,14 +40,6 @@ public class Psychologist extends User {
 
     public void setBio(String bio) {
         this.bio = bio;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
     }
 
     public List<Timeslot> getAvailability() {
@@ -73,7 +64,6 @@ public class Psychologist extends User {
                 "psychologistId=" + psychologistId +
                 "Bio" + bio
                 +
-                ", specialization='" + specialization + '\'' +
                 ", availability=" + availability +
                 ", rating=" + rating +
                 '}';

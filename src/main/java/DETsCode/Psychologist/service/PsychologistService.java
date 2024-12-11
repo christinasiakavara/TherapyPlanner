@@ -2,8 +2,11 @@ package DETsCode.Psychologist.service;
 
 import DETsCode.Psychologist.Psychologist;
 import DETsCode.Timeslot.Timeslot;
+
 import java.util.List;
 import java.util.ArrayList;
+
+import DETsCode.Psychologist.PsychologistDAO;
 
 public class PsychologistService {
 
@@ -18,6 +21,7 @@ public class PsychologistService {
 
 
     private List<String> notes = new ArrayList<>();
+    List<Psychologist> psychologists = PsychologistDAO.getInstance().getAll();
 
     /**
      * Validates if the provided timeslot is available and adds it to the list of timeslots
@@ -38,8 +42,7 @@ public class PsychologistService {
     }
 
     public List<Psychologist> fetchPsychologists() {
-        // TODO: get all psychologists from psychologistDao
-        throw new UnsupportedOperationException("Not supported yet.");
+        return psychologists;
     }
 
 
@@ -61,8 +64,14 @@ public class PsychologistService {
 
     }
 
-    public void checkExistence(int psychologistId) {
+    public boolean checkExistence(int psychologistId) {
         //check in the psychologistDao if the provided psychologistId corresponds to a psychologist
-        throw new UnsupportedOperationException("Not supported yet.");
+        boolean exists = false;
+        for (Psychologist psychologist : psychologists) {
+            if (psychologist.getPsychologistId() == psychologistId) {
+                exists = true;
+            }
+        }
+        return exists;
     }
 }

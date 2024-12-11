@@ -36,6 +36,7 @@ CREATE TABLE ratings
 CREATE TABLE patient
 (
     id      INT NOT NULL PRIMARY KEY,
+    medical_history TEXT(5000),
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );

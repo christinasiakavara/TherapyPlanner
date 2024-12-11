@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import DETsCode.Patient.Patient;
 import DETsCode.db.DatabaseConnection;
 
 public class PatientDAO {
@@ -41,13 +40,14 @@ public class PatientDAO {
                         rs.getString("birthdate"),
                         rs.getInt("user_id"),
                         rs.getInt("role"),
-                        rs.getInt("id")
-                );
+                        rs.getString("medical_history"),
+                        rs.getInt("id"),
+                        null);
                 patients.add(patient);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return patient;
+        return patients;
     }
 }

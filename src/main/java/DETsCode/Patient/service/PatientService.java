@@ -2,6 +2,7 @@ package DETsCode.Patient.service;
 
 import DETsCode.Patient.Patient;
 import DETsCode.Patient.PatientDAO;
+import DETsCode.Psychologist.Psychologist;
 import DETsCode.Psychologist.service.PsychologistService;
 import DETsCode.Timeslot.Timeslot;
 
@@ -20,7 +21,16 @@ public class PatientService {
     }
 
 
-    public void bookSession(Timeslot timeslot) {
+    public void bookSession(Timeslot requestedtimeslot, Psychologist psychologist) {
+        boolean availability = false;
+        for (Timeslot scheduledslots : psychologist.getAvailability()) {
+            if (requestedtimeslot.overlaps(scheduledslots)) {
+                psychologistService.updateAvailability(psychologist, requestedtimeslot);
+            }
+        }
+        if (availability == false) {
+            throw new IllegalArgumentException("Your requested session overlaps the existing one.");
+        }
     }
 
 }

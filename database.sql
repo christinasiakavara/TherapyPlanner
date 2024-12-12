@@ -24,7 +24,6 @@ CREATE TABLE psychologists
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-
 CREATE TABLE ratings
 (
     id              INT PRIMARY KEY NOT NULL,
@@ -39,6 +38,16 @@ CREATE TABLE patients
     medical_history TEXT(5000),
     user_id         INT,
     FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE therapysession
+(
+    thersessionID INT PRIMARY KEY,
+    sessionDateTime DATETIME,
+    patientID INT,
+    psychologistID INT,
+    FOREIGN KEY (patientID) REFERENCES patient (id),
+    FOREIGN KEY (psychologistID) REFERENCES psychologists (id)
 );
 
 CREATE TABLE therapysession
@@ -58,8 +67,8 @@ CREATE TABLE payments
     payment_date DATETIME,
     sessionID    INT             NOT NULL,
     patient_id   INT,
-    FOREIGN KEY (sessionID) REFERENCES therapysession (thersessionID),
-    FOREIGN KEY (patient_id) REFERENCES patients (id) -- Επίσης πρέπει μετά από κάθε ολοκληρωμένο session ή payment να διαγράφονται κάποια στοιχεία, πχ εδώ το patientID; Μιας και έγινε το payment και δεν είναι αναγκαστικό ότι θα ξανακάνει
+    FOREIGN KEY (sessionID) REFERENCES therapysession (thersessionID) NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients (id) --Επίσης πρέπει μετά από κάθε ολοκληρωμένο session ή payment να διαγράφονται κάποια στοιχεία, πχ εδώ το patientID; Μιας και έγινε το payment και δεν είναι αναγκαστικό ότι θα ξανακάνει
 );
 
 

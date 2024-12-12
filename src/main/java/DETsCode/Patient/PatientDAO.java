@@ -1,16 +1,16 @@
 package DETsCode.Patient;
 
+import DETsCode.db.DatabaseConnection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import DETsCode.db.DatabaseConnection;
-
 public class PatientDAO {
 
-    private DatabaseConnection conn;
+    private final DatabaseConnection conn;
     private static PatientDAO instance;//allows for only one instance to be created
 
     private PatientDAO() {
@@ -46,7 +46,7 @@ public class PatientDAO {
                 patients.add(patient);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return patients;
 
@@ -67,7 +67,7 @@ public class PatientDAO {
             stmt.setInt(10, patient.getRoleID());
             stmt.setString(11, patient.getMedicalHistory());
             stmt.setInt(12, patient.getPatiendid());
-            stmt.setNull(13,); //???
+//            stmt.setNull(13,); //???
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {

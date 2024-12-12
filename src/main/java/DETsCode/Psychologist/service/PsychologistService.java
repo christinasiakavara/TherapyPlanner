@@ -1,12 +1,11 @@
 package DETsCode.Psychologist.service;
 
 import DETsCode.Psychologist.Psychologist;
+import DETsCode.Psychologist.PsychologistDAO;
 import DETsCode.Timeslot.Timeslot;
 
-import java.util.List;
 import java.util.ArrayList;
-
-import DETsCode.Psychologist.PsychologistDAO;
+import java.util.List;
 
 public class PsychologistService {
 
@@ -70,6 +69,7 @@ public class PsychologistService {
         for (Psychologist psychologist : psychologists) {
             if (psychologist.getPsychologistId() == psychologistId) {
                 exists = true;
+                break;
             }
         }
         return exists;

@@ -1,16 +1,16 @@
 package DETsCode.Psychologist;
 
+import DETsCode.db.DatabaseConnection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import DETsCode.db.DatabaseConnection;
-
 public class PsychologistDAO {
 
-    private DatabaseConnection conn;
+    private final DatabaseConnection conn;
     private static PsychologistDAO instance;//allows for only one instance to be created
 
     private PsychologistDAO() {

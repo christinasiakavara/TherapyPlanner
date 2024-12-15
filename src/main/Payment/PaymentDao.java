@@ -64,6 +64,26 @@ public class PaymentDAO {
         }
         return payment;
     }
+    public List<Payment> getPaymentsByPatientID(int patiendid) {
+        List<Payment> payments = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT * FROM Payment WHERE patientid=?");
+            stmt.setInt(1,patientid);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Payment payment = new Payment(
+                        rs.getInt("paymentID"),
+                        rs.getDouble("amount"),
+                        rs.getTimestamp("paymentDate").toLocalDateTime(),
+                        rs.getInt("sessionID")
+                );
+                payments.add(payment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return payment;
+    }
 
         public boolean addPayment(Payment payment) {
             try {

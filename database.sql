@@ -62,13 +62,39 @@ CREATE TABLE therapysession
 
 CREATE TABLE payments
 (
-    id           INT PRIMARY KEY NOT NULL,
+    paymentid           INT PRIMARY KEY NOT NULL,
     amount       FLOAT           NOT NULL,
-    payment_date DATETIME,
+    paymentDate DATETIME,
     sessionID    INT             NOT NULL,
-    patient_id   INT,
+    patientid   INT,
     FOREIGN KEY (sessionID) REFERENCES therapysession (thersessionID) NOT NULL,
-    FOREIGN KEY (patient_id) REFERENCES patients (id) --Επίσης πρέπει μετά από κάθε ολοκληρωμένο session ή payment να διαγράφονται κάποια στοιχεία, πχ εδώ το patientID; Μιας και έγινε το payment και δεν είναι αναγκαστικό ότι θα ξανακάνει
+    FOREIGN KEY (patientid) REFERENCES patients (id) --Επίσης πρέπει μετά από κάθε ολοκληρωμένο session ή payment να διαγράφονται κάποια στοιχεία, πχ εδώ το patientID; Μιας και έγινε το payment και δεν είναι αναγκαστικό ότι θα ξανακάνει
+);
+
+CREATE TABLE admin
+(
+    adminid     INT PRIMARY KEY NOT NULL,
+    permissions TEXT(5000) 
+);
+
+CREATE TABLE chat
+(
+    chatid        INT PRIMARY KEY NOT NULL,
+    participantpatient INT NOT NULL,
+    participanttherapist INT NOT NULL,
+    FOREIGN KEY (participantpatient) REFERENCES patients (id),
+    FOREIGN KEY (participanttherapis) REFERENCES psychologists (id)
+);
+
+CREATE TABLE message
+(
+    messageid  INT PRIMARY KEY NOT NULL,
+    chatid    INT NOT NULL,
+    senderid   INT NOT NULL,
+    content    TEXT(2000),
+    timestamp  DATETIME ,
+    FOREIGN KEY (chatid) REFERENCES chat (chatid),
+    FOREIGN KEY (senderid) REFERENCES users (id)
 );
 
 

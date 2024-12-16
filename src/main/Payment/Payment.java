@@ -8,7 +8,7 @@ public class Payment {
     private Patient patient;
     private TherapySession therapysession;
     
-    public Payment(int paymendid, float ammount, LocalDateTime paymentDate, Patient patient, TherapySession therapysession) {
+    public Payment(int id, float ammount, LocalDateTime paymentDate, Patient patient, TherapySession therapysession) {
         this.paymendid = paymendid;
         this.ammount = ammount;
         this.paymentDate = paymentDate;

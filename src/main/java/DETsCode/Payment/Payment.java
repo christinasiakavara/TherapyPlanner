@@ -1,19 +1,18 @@
 package DETsCode.Payment;
 import java.time.LocalDateTime;
-import DETsCode.Patient;
 public class Payment {
     private int paymendid;
     private float ammount;
     private LocalDateTime paymentDate;
-    private Patient patient;
-    private TherapySession therapysession;
-    
-    public Payment(int id, float ammount, LocalDateTime paymentDate, Patient patient, TherapySession therapysession) {
+    private int patientid;
+    private int sessionID;
+
+    public Payment(int paymentid, float ammount, LocalDateTime paymentDate,int patiendid,int sessionID ) {
         this.paymendid = paymendid;
         this.ammount = ammount;
         this.paymentDate = paymentDate;
-        this.patient = patient;
-        this.therapysession = therapysession;
+        this.patientid = patiendid;
+        this.sessionID = sessionID;
     }
 
     public int getPaymendid() {
@@ -40,22 +39,21 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public Patient getPatient() {
-        return this.patient;
+    public int getPatientid() {
+        return this.patientid;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientid(int patientid) {
+        this.patientid = patientid;
     }
 
-    public TherapySession getTherapysession() {
-        return this.therapysession;
+    public int getSessionID() {
+        return this.sessionID;
     }
 
-    public void setTherapysession(TherapySession therapysession) {
-        this.therapysession = therapysession;
+    public void setSessionID(int sessionID) {
+        this.sessionID = sessionID;
     }
-
 
     @Override
     public String toString() {
@@ -63,12 +61,10 @@ public class Payment {
             " paymendid='" + getPaymendid() + "'" +
             ", ammount='" + getAmmount() + "'" +
             ", paymentDate='" + getPaymentDate() + "'" +
-            ", patient='" + getPatient() + "'" +
-            ", therapysession='" + getTherapysession() + "'" +
+            ", patientid='" + getPatientid() + "'" +
+            ", sessionID='" + getSessionID() + "'" +
             "}";
     }
-
-    
 
     
 }

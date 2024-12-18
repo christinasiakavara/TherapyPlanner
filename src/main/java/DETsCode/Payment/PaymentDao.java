@@ -6,22 +6,22 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-public class PaymentDAO {
+public class PaymentDao{
     private final DatabaseConnection conn;
-    private static PaymentDAO instance;
+    private static PaymentDao instance;
 
-    private PaymentDAO() {
+    private PaymentDao() {
         conn = DatabaseConnection.getInstance();
     }
 
-    public static PaymentDAO getInstance() {
+    public static PaymentDao getInstance() {
         if (instance == null) {
-            instance = new PaymentDAO();
+            instance = new PaymentDao();
         }
         return instance;
     }
     public List<Payment> getPayment() throws Exception {
-        List <Payment> depts = new ArrayList<Payment>();
+        List <Payment> payments = new ArrayList<Payment>();
         try {
             PreparedStatement query = conn.getConnection().prepareStatement("SELECT * FROM payment;");
             ResultSet rs = query.executeQuery();
@@ -53,8 +53,9 @@ public class PaymentDAO {
             while (rs.next()) {
                 Payment payment = new Payment(
                         rs.getInt("paymentID"),
-                        rs.getDouble("amount"),
+                        rs.getFloat("amount"),
                         rs.getTimestamp("paymentDate").toLocalDateTime(),
+                        rs.getInt("patientid"),
                         rs.getInt("sessionID")
                 );
                 payments.add(payment);
@@ -62,19 +63,20 @@ public class PaymentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return payment;
+        return payments;
     }
     public List<Payment> getPaymentsByPatientID(int patiendid) {
         List<Payment> payments = new ArrayList<>();
         try {
             PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT * FROM Payment WHERE patientid=?");
-            stmt.setInt(1,patientid);
+            stmt.setInt(1,patiendid);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Payment payment = new Payment(
                         rs.getInt("paymentID"),
-                        rs.getDouble("amount"),
+                        rs.getFloat("amount"),
                         rs.getTimestamp("paymentDate").toLocalDateTime(),
+                        rs.getInt("patiendid"),
                         rs.getInt("sessionID")
                 );
                 payments.add(payment);
@@ -82,18 +84,18 @@ public class PaymentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return payment;
+        return payments;
     }
 
         public boolean addPayment(Payment payment) {
             try {
                 String query = "INSERT INTO Payment (paymentid,amount, paymentDate, sessionID,patientid) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement stmt = conn.getConnection().prepareStatement(query);
-                stmt.setInt(1, payment.getpaymentid());
-                stmt.setDouble(2, payment.getAmount());
+                stmt.setInt(1, payment.getPaymendid());
+                stmt.setFloat(2, payment.getAmmount());
                 stmt.setTimestamp(3, java.sql.Timestamp.valueOf(payment.getPaymentDate()));
-                stmt.setInt(4, payment.getsessionid());
-                stmt.setInt(5, payment.getpatientid());
+                stmt.setInt(4, payment.getSessionID());
+                stmt.setInt(5, payment.getPatientid());
 
     
                 int rowsAffected = stmt.executeUpdate();

@@ -1,6 +1,6 @@
 package DETsCode.Patient;
 
-import DETsCode.Payment.PaymentDao;
+
 import DETsCode.db.DatabaseConnection;
 
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ public class PatientDAO {
         conn = DatabaseConnection.getInstance();
     }
 
-    public static PaymentDao getInstance() {
+    public static PatientDAO getInstance() {
         if (instance == null) {
             instance = new PatientDAO();
         }

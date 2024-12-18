@@ -64,7 +64,7 @@ CREATE TABLE payments
 CREATE TABLE admin
 (
     adminid     INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    permissions TEXT(5000) 
+    permissions VARCHAR(30) 
 );
 
 CREATE TABLE chat

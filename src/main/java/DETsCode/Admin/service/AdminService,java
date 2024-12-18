@@ -1,0 +1,15 @@
+package DETsCode.Admin.service;
+
+import java.util.List;
+import DETsCode.Admin.AdminDao;
+import DETsCode.Admin.Admin;
+public class AdminService {
+    private final AdminDao adminDao;
+    public AdminService {
+        this.adminDao = AdminDao.getInstance();
+    }
+    public boolean addAdmin(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int adminID, List<String> permissions) {
+        Admin newAdmin = new Admin(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID,adminID, permissions);
+        return adminDAO.addAdmin(newAdmin);
+    
+}

@@ -2,7 +2,7 @@ CREATE DATABASE TherapyPlannerDB;
 
 CREATE TABLE users
 (
-    id         INT PRIMARY KEY NOT NULL, -- Μήπως στα id, βάζαμε AUTO_INCREMENT? Βρήκα στο w3 ότι φτιάχνει αυτόματα έναν κωδικό η βάση
+    id         INT AUTO_INCREMENT PRIMARY KEY NOT NULL , 
     first_name VARCHAR(15),
     last_name  VARCHAR(30),
     username   VARCHAR(10)     NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE users
 
 CREATE TABLE psychologists
 (
-    id      INT PRIMARY KEY NOT NULL,
+    id   INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     bio     TEXT(5000),
     ratings DECIMAL(3, 2),
     user_id INT,
@@ -26,7 +26,7 @@ CREATE TABLE psychologists
 
 CREATE TABLE ratings
 (
-    id              INT PRIMARY KEY NOT NULL,
+    id  INT AUTO_INCREMENT PRIMARY   KEY NOT NULL,
     value           DECIMAL(3, 2),
     psychologist_id INT,
     FOREIGN KEY (psychologist_id) REFERENCES psychologists (id)
@@ -34,7 +34,7 @@ CREATE TABLE ratings
 
 CREATE TABLE patients
 (
-    id              INT NOT NULL PRIMARY KEY,
+    id      INT  AUTO_INCREMENT NOT NULL PRIMARY KEY,
     medical_history TEXT(5000),
     user_id         INT,
     FOREIGN KEY (user_id) REFERENCES users (id)
@@ -42,7 +42,7 @@ CREATE TABLE patients
 
 CREATE TABLE therapysession
 (
-    thersessionID INT PRIMARY KEY,
+    thersessionID INT AUTO_INCREMENT PRIMARY KEY,
     sessionDateTime DATETIME,
     patientID INT,
     psychologistID INT,
@@ -50,19 +50,9 @@ CREATE TABLE therapysession
     FOREIGN KEY (psychologistID) REFERENCES psychologists (id)
 );
 
-CREATE TABLE therapysession
-(
-    thersessionID   INT PRIMARY KEY,
-    sessionDateTime DATETIME,
-    patientID       INT,
-    psychologistID  INT,
-    FOREIGN KEY (patientID) REFERENCES patient (id),
-    FOREIGN KEY (psychologistID) REFERENCES psychologists (id)
-);
-
 CREATE TABLE payments
 (
-    paymentid           INT PRIMARY KEY NOT NULL,
+    paymentid           INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     amount       FLOAT           NOT NULL,
     paymentDate DATETIME,
     sessionID    INT             NOT NULL,
@@ -73,13 +63,13 @@ CREATE TABLE payments
 
 CREATE TABLE admin
 (
-    adminid     INT PRIMARY KEY NOT NULL,
+    adminid     INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     permissions TEXT(5000) 
 );
 
 CREATE TABLE chat
 (
-    chatid        INT PRIMARY KEY NOT NULL,
+    chatid        INT AUTO_INCREMENT  PRIMARY KEY NOT NULL,
     participantpatient INT NOT NULL,
     participanttherapist INT NOT NULL,
     FOREIGN KEY (participantpatient) REFERENCES patients (id),
@@ -88,7 +78,7 @@ CREATE TABLE chat
 
 CREATE TABLE message
 (
-    messageid  INT PRIMARY KEY NOT NULL,
+    messageid  INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     chatid    INT NOT NULL,
     senderid   INT NOT NULL,
     content    TEXT(2000),

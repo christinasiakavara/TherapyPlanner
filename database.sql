@@ -67,24 +67,26 @@ CREATE TABLE admin
     permissions VARCHAR(30) 
 );
 
-CREATE TABLE chat
+CREATE TABLE Chat
 (
     chatid        INT AUTO_INCREMENT  PRIMARY KEY NOT NULL,
     participantpatient INT NOT NULL,
     participanttherapist INT NOT NULL,
     FOREIGN KEY (participantpatient) REFERENCES patients (id),
-    FOREIGN KEY (participanttherapis) REFERENCES psychologists (id)
+    FOREIGN KEY (participanttherapist) REFERENCES psychologists (id)
 );
 
-CREATE TABLE message
+CREATE TABLE Message
 (
     messageid  INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     chatid    INT NOT NULL,
     senderid   INT NOT NULL,
+    receiverid INT NOT NULL,
     content    TEXT(2000),
     timestamp  DATETIME ,
     FOREIGN KEY (chatid) REFERENCES chat (chatid),
-    FOREIGN KEY (senderid) REFERENCES users (id)
+    FOREIGN KEY (senderid) REFERENCES users (id),
+    FOREIGN KEY (receiverid) REFERENCES users (id)
 );
 
 

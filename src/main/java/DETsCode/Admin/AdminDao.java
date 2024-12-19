@@ -53,7 +53,7 @@ public class AdminDao {
     }
     public boolean addAdmin(Admin admin) {
         try {
-            String query = "INSERT INTO admin (firstname, lastname, email, username, password, number, address, birthdate, userid, roleID, adminID, permissions) VALUES (?, ?)";
+            String query = "INSERT INTO admin (firstname, lastname, email, username, password, number, address, birthdate, userid, roleID, adminID, permissions) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.getConnection().prepareStatement(query);
             stmt.setString(1, admin.getFirstname());
             stmt.setString(2, admin.getLastname());

@@ -7,16 +7,18 @@ public class Message {
     private int chatid;
     private int senderid;
     private int receiverid;
+    private String content;
     private LocalDateTime timestamp;
 
-
-    public Message(int messageid, int chatid, int senderid, int receiverid, LocalDateTime timestamp) {
+    public Message(int messageid, int chatid, int senderid, int receiverid, String content, LocalDateTime timestamp) {
         this.messageid = messageid;
         this.chatid = chatid;
         this.senderid = senderid;
         this.receiverid = receiverid;
+        this.content = content;
         this.timestamp = timestamp;
     }
+
 
     public int getMessageid() {
         return this.messageid;
@@ -50,6 +52,14 @@ public class Message {
         this.receiverid = receiverid;
     }
 
+    public String getContent() {
+        return this.content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public LocalDateTime getTimestamp() {
         return this.timestamp;
     }
@@ -65,8 +75,9 @@ public class Message {
             ", chatid='" + getChatid() + "'" +
             ", senderid='" + getSenderid() + "'" +
             ", receiverid='" + getReceiverid() + "'" +
+            ", content='" + getContent() + "'" +
             ", timestamp='" + getTimestamp() + "'" +
             "}";
     }
-    
+     
 }

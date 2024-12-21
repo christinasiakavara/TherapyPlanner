@@ -2,7 +2,7 @@ package DETsCode.Patient;
 
 
 import DETsCode.db.DatabaseConnection;
-
+import DETsCode.TherapySession.TherapySessionDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +31,7 @@ public class PatientDAO {
             PreparedStatement query = conn.getConnection().prepareStatement("SELECT * FROM patient;");
             ResultSet rs = query.executeQuery();
             while (rs.next()) {
+                int patiendid=rs.getInt("id");
                 Patient patient = new Patient(rs.getString("first_name"),
                         rs.getString("last_name"),
                         rs.getString("email"),
@@ -43,7 +44,7 @@ public class PatientDAO {
                         rs.getInt("role"),
                         rs.getString("medical_history"),
                         rs.getInt("id"),
-                        null);
+                        TherapySessionDAO.getSessionsByPatientID(patiendid));
                 patients.add(patient);
             }
         } catch (SQLException e) {

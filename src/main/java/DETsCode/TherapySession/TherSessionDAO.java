@@ -11,7 +11,7 @@ import DETsCode.Psychologist.Psychologist;
 
 import DETsCode.db.DatabaseConnection;
 
-public class TherSessionDAO {
+public class TherapySessionDAO {
 
     private DatabaseConnection conn;
 

@@ -116,7 +116,7 @@ public class User {
         if (roleID == 1 || roleID == 2 || roleID == 3) {
             this.roleID = roleID;
         } else {
-            throw new IllegalArgumentException("RoleID must be 1 for Psychologist or 2 for Patient or 3 for Admin).");
+            throw new IllegalArgumentException("RoleID must be 1 for Psychologist or 2 for Patient or 3 for Admin.");
         }
     }
 

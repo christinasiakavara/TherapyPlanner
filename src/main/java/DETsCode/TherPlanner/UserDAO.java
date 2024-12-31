@@ -3,7 +3,8 @@ package TherPlanner;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import AuthenticationException.java;
+//import AuthenticationException.java;			// Error : cannot find class
+import javax.naming.AuthenticationException;	// Is this the correct class?
 
 /**
  * UserService provides all the necessary methods related to users.
@@ -23,9 +24,10 @@ public class UserDAO {
 		List<User> users = new ArrayList<User>();
 
 		// adding some users for the sake of the example
-		users.add(new User("John", "Doe", "jdoe@somewhere.com", "jdoe", "1111"));
-		users.add(new User("Mary", "Smith", "msmith@somewhere.com", "msmith",  "2222"));
-        users.add(new User("Bob", "Jakson", "bjakson@somewhere.com", "bjakson",  "3333"));
+		// Error : not all necessary arguments are given
+		//users.add(new User("John", "Doe", "jdoe@somewhere.com", "jdoe", "1111"));
+		//users.add(new User("Mary", "Smith", "msmith@somewhere.com", "msmith",  "2222"));
+        //users.add(new User("Bob", "Jakson", "bjakson@somewhere.com", "bjakson",  "3333"));
 
 		return users;
 
@@ -44,7 +46,7 @@ public class UserDAO {
         List<User> users = getUsers();
 
         for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(hashPassword(password))) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(/*hashPassword*/(password))) {	// Error : cannot find hashPassword
                 return user; // credentials are valid, so return the User object
             }
         }

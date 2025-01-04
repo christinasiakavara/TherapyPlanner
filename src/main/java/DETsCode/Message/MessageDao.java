@@ -83,8 +83,26 @@ public class MessageDao {
             
 
 }
+public boolean deleteMessage(Message messege) {
+    try {
+                String query = "DELETE FROM Message(messageId, chatid, senderid, receiverid, content, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement stmt = conn.getConnection().prepareStatement(query);
+                stmt.setInt(1, message.getMessageid());
+                stmt.setInt(2, message.getChatid());
+                stmt.setInt(3, message.getSenderid());
+                stmt.setInt(4, message.getReceiverid());
+                stmt.setString(5,message.getContent());
+                stmt.setTimestamp(6, java.sql.Timestamp.valueOf(message.getTimestamp()));
 
-        
-    }
+    
+                int rowsAffected = stmt.executeUpdate();
+                return rowsAffected > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+              return false;
+    
+ }
+}
     
 

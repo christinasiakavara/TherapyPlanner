@@ -83,7 +83,7 @@ public class MessageDao {
             
 
 }
-public boolean deleteMessage(Message messege) {
+public boolean deleteMessage(Message message) {
     try {
                 String query = "DELETE FROM Message(messageId, chatid, senderid, receiverid, content, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = conn.getConnection().prepareStatement(query);

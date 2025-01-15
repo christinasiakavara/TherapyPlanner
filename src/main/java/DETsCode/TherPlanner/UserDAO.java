@@ -1,4 +1,4 @@
-package TherPlanner;
+package DETsCode.TherPlanner;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;

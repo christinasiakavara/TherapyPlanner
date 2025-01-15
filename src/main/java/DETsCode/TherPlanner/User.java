@@ -1,4 +1,4 @@
-package TherPlanner;
+package DETsCode.TherPlanner;
 
 public class User {
     

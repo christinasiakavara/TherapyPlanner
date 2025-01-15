@@ -1,15 +1,15 @@
-package DETsCode.Chat;
+package DETsCode.ExtraFeatures;
 
 import java.util.List;
 
 import DETsCode.Message.Message;
 
 public class Chat {
-    private int chatid ;
+
+    private int chatid;
     private int participantpatientid;
     private int participanttherapistid;
     private List<Message> messages;
-
 
     public Chat(int chatid, int participantpatientid, int participanttherapistid, List<Message> messages) {
         this.chatid = chatid;
@@ -52,15 +52,12 @@ public class Chat {
 
     @Override
     public String toString() {
-        return "{" +
-            " chatid='" + getChatid() + "'" +
-            ", participantpatientid='" + getParticipantpatientid() + "'" +
-            ", participanttherapistid='" + getParticipanttherapistid() + "'" +
-            ", messages='" + getMessages() + "'" +
-            "}";
+        return "{"
+                + " chatid='" + getChatid() + "'"
+                + ", participantpatientid='" + getParticipantpatientid() + "'"
+                + ", participanttherapistid='" + getParticipanttherapistid() + "'"
+                + ", messages='" + getMessages() + "'"
+                + "}";
     }
-    
 
-
-    
 }

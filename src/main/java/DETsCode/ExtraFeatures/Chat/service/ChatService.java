@@ -1,9 +1,8 @@
-package DETsCode.Chat.service;
+package DETsCode.ExtraFeatures;
 
 import java.util.List;
 
 import DETsCode.Chat.Chat;
-import DETsCode.Chat.ChatDAO;
 import DETsCode.Message.Message;
 import DETsCode.Message.MessageDao;
 

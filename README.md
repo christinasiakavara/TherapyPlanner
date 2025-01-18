@@ -11,8 +11,8 @@
 - η δημιουργία της βάσης δεδομένων σε κάποιο Database Management System εκτελώντας τις εντολές SQL του αρχείου database.sql (κατάλογος src/main/sql) και στη συνέχεια
 - η δημιουργία των απαραίτητων μεταβλητών συστήματος για την πρόσβαση στη βάση. Συγκεκριμένα τις μεταβλητές
     - **DB_URL**: URL για τη διευθυνση της βάσης δεδομένων: _jdbc:mysql://195.251.249.131:3306/ismgroup47_.
-    - **DB_USERNAME**: Το όνομα χρήστη *ismgroup47*.
-    - **DB_PASSWORD**: Ο κωδικός πρόσβασης *u6h7c6*.
+    - **DB_USERNAME**: Το όνομα χρήστη: *ismgroup47*.
+    - **DB_PASSWORD**: Ο κωδικός πρόσβασης: *u6h7c6*.
 
 ## Προωθητικό video
 Βρείτε περισσότερες πληροφορίες [εδώ](https://github.com/christinasiakavara/TherapyPlanner/raw/refs/heads/main/0117.mp4).

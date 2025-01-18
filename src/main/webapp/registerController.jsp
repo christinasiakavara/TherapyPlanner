@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page errorPage="errorController.jsp"%>
-<%@ page import="therplanner.*" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.sql.*" %>
+<%@ page import="therplanner.*" %>
+
 
 
 <%
@@ -13,6 +13,42 @@ String email = request.getParameter("email");
 String password = request.getParameter("password");
 String confirm = request.getParameter("confirm");
 String phoneNum = request.getParameter("phoneNum");
+
+// Initialize variables for errors
+int counter = 0;
+List<String> ls = new ArrayList<String>();
+
+// Validation logic
+if (name == null || name.trim().length() < 3) {
+  ls.add("Name must be at least 3 characters long");
+  counter++;
+}
+if (surname == null || surname.trim().length() < 3) {
+  ls.add("Surname must be at least 3 characters long");
+  counter++;
+}
+if (username == null || username.trim().length() < 5) {
+  ls.add("Username must be at least 5 characters long");
+  counter++;
+}
+if (email == null || email.trim().length() < 5) {
+  ls.add("Email must be at least 5 characters long");
+  counter++;
+}
+if (password == null || password.trim().length() < 5) {
+  ls.add("Password must be at least 5 characters long");
+  counter++;
+}
+if (confirm == null || !confirm.equals(password)) {
+  ls.add("Password and confirm do not match");
+  counter++;
+}
+
+
+if (phoneNum == null || !phoneNum.matches("69\\d{8}")) {
+  ls.add("Phone number is wrong");
+}
+
 %>
 
 <!DOCTYPE html>
@@ -21,12 +57,11 @@ String phoneNum = request.getParameter("phoneNum");
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d885a307c3.js">
-    </script>
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d885a307c3.js"></script>
     <link rel="stylesheet" href="css/auth.css" />
     <link rel="stylesheet" href="css/register.css" />
     <title>Register</title>
-  </head>
+      </head>
 
 
 
@@ -34,8 +69,9 @@ String phoneNum = request.getParameter("phoneNum");
     <div class="container sign-up-mode">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="loginController.jsp" method="POST" class="sign-in-form">
+          <form action="loginController.jsp" method="post" class="sign-in-form">
             <h2 class="title">Welcome to <b>Therapy</b> planner</h2>
+            
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" name="username" placeholder="Username" />
@@ -61,37 +97,72 @@ String phoneNum = request.getParameter("phoneNum");
               </a>
             </div>
           </form>
-
           
-          <form action="registerController.jsp" method="post" class="sign-up-form">
-            <h2 class="title">Registration</h2>
+          <form action="registerController.jsp" method="get" class="sign-up-form">
+            <% if (counter == 0) { 
+              
+              try {
+                UserDAO userDao = new UserDAO();
+                User newUser = new User(name, surname, email, username, password);
+                userDao.register(newUser);
+
+              %>
+
+              <!-- Success Message -->
+              <h2 class="title">Registration is complete</h2>
+              <div class="alert alert-success" role="alert">
+                <center> <b>NOTE: A verification link has been sent to <%= email %>.</b></center>
+              </div>
+              <% 
+                } catch (Exception e) { 
+                request.setAttribute("message", e.getMessage());
+              %>
+                <div class="alert alert-danger" role="alert">
+                    <b>Error:</b> <%= e.getMessage() %>
+                </div>
+              <%
+              } 
+            } else { %>
+              <!-- Display Errors -->
+              <div class="alert alert-danger" role="alert">
+                <h2 class="title">Registration has errors</h2>
+                <center>
+                <ol>
+                  <% for (String error : ls) { %>
+                   <li><b><%= error %></b></li>
+                  <% } %>
+                </ol>
+              </center>
+              </div>
+
+            <% } %>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="username" id="username" value="<%= username != null ? username : "" %>" placeholder="username" />
+              <input type="text" name="username" id="username" placeholder="username" />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="name" id="name" value="<%= name != null ? name : "" %>" placeholder="First name" />
+              <input type="name" name="name" id="name" placeholder="First name" />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="surname" id="surname" value="<%= surname != null ? surname : "" %>" placeholder="Surname" />
+              <input type="surname" name="surname" id="surname" placeholder="Surname" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" name="email" id="email" value="<%= email != null ? email : "" %>" placeholder="Email" />
+              <input type="email" name="email" id="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fa fa-key" aria-hidden="true"></i>
-              <input type="password" name="password" id="password" value="<%= password != null ? password : "" %>" placeholder="password" />
+              <input type="password" name="password" id="password" placeholder="password" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="confirm" id="verifyPassword" value="<%= confirm != null ? confirm : "" %>" placeholder="Password verification" />
+              <input type="password" name="confirm" id="confirm" placeholder="Password verification" />
             </div>
             <div class="input-field">
               <i class="fas fa-phone-alt"></i>
-              <input type="phone" name="phoneNum" id="phoneNum" value="<%= phoneNum != null ? phoneNum : "" %>" placeholder="telephone number" />
+              <input type="phone" name="phoneNum" id="phoneNum" placeholder="telephone number" />
             </div>
             <input type="submit" class="btn" value="register" />
             <p class="social-text">Or continue with: </p>
@@ -136,7 +207,9 @@ String phoneNum = request.getParameter("phoneNum");
               <button class="btn transparent" id="sign-in-btn">
                 Login
               </button>
+
             </a>
+            
           </div>
           <img src="images/cats-and-dogs-signup-removebg-preview.png" class="image" alt="" />
         </div>

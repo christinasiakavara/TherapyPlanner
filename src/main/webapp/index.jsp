@@ -1,46 +1,29 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage="errorController.jsp"%>
+<%@ page import="therplanner.*" %>
+<%@ page import="java.util.*, java.sql.*" %>
+
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
     <title>THERAPYPlanner - Home</title>
 
-    
-
-<!-- Metadata -->
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<!-- Custom Styles -->
-<link rel="stylesheet" href="css/index.css" />
-
-<!-- Bootstrap CSS & JS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-/>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-  crossorigin="anonymous"
-/>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Fontawesome CDN -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-  integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
+    <%@include file="header.jsp" %>
 
   </head>
 
   <body>
 
-    
+    <%
+  // Fetch available therapists using UserDAO
+  UserDAO userDAO = new UserDAO();
+  List<Therapist> availableTherapists = null;
+  try {
+      availableTherapists = userDAO.getAvailableTherapists();
+  } catch (Exception e) {
+      e.printStackTrace();
+      availableTherapists = new ArrayList<Therapist>();  }
+%>
 
 <!-- Header -->
   <header id="main-header" class="header">
@@ -144,51 +127,30 @@
   <div class="container text-center">
     <h2 class="mb-4">Choose Your Therapist</h2>
     <div class="row g-4">
-      
+      <%
+        if (availableTherapists == null || availableTherapists.isEmpty()) {
+      %>
+        <div class="col-12">
+          <p class="text-muted">No therapists are currently available. Please check back later.</p>
+        </div>
+      <%
+        } else {
+          for (Therapist therapist : availableTherapists) {
+      %>
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
-            <img src="assets/peter.jpg" class="card-img-top rounded-circle mx-auto mt-4" alt="Jane's Photo" style="width: 100px; height: 100px;">
+            <img src="assets/<%= therapist.getPhoto() %>" class="card-img-top rounded-circle mx-auto mt-4" alt="<%= therapist.getName() %>'s Photo" style="width: 100px; height: 100px;">
             <div class="card-body">
-              <h5 class="card-title">Jane Doe</h5>
-              <p class="card-text">Clinical Psychologist</p>
-              <a href="login.jsp?redirect=therapistDetails&id=1" class="btn btn-success btn-sm">View Profile</a>
+              <h5 class="card-title"><%= therapist.getName() %> <%= therapist.getLastName() %></h5>
+              <p class="card-text"><%= therapist.getTitle() %></p>
+              <a href="login.jsp?redirect=therapistDetails&id=<%= therapist.getId() %>" class="btn btn-success btn-sm">View Profile</a>
             </div>
           </div>
         </div>
-      
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm h-100">
-            <img src="assets/peter.jpg" class="card-img-top rounded-circle mx-auto mt-4" alt="John's Photo" style="width: 100px; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">John Smith</h5>
-              <p class="card-text">Licensed Therapist</p>
-              <a href="login.jsp?redirect=therapistDetails&id=2" class="btn btn-success btn-sm">View Profile</a>
-            </div>
-          </div>
-        </div>
-      
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm h-100">
-            <img src="assets/peter.jpg" class="card-img-top rounded-circle mx-auto mt-4" alt="Michael's Photo" style="width: 100px; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">Michael Davis</h5>
-              <p class="card-text">Counseling Psychologist</p>
-              <a href="login.jsp?redirect=therapistDetails&id=4" class="btn btn-success btn-sm">View Profile</a>
-            </div>
-          </div>
-        </div>
-      
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm h-100">
-            <img src="assets/peter.jpg" class="card-img-top rounded-circle mx-auto mt-4" alt="Sophia's Photo" style="width: 100px; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">Sophia Taylor</h5>
-              <p class="card-text">Therapist</p>
-              <a href="login.jsp?redirect=therapistDetails&id=5" class="btn btn-success btn-sm">View Profile</a>
-            </div>
-          </div>
-        </div>
-      
+      <%
+          }
+        }
+      %>
     </div>
   </div>
 </section>
@@ -206,83 +168,7 @@
 
 
       <!--footer-->
-      
-
-<footer class="bg-dark text-white pt-5 pb-4 ">
-  <div class="container text-center text-md-left ">
-    <div class="row text-center text-md-left">
-      
-      <div class="col-md-3 col-lg-3 colxl-3 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold text-success">HULK FITNESS</h5>
-        <p> our company is a small organization located in the city of kamatero also this is group 3 project and they are so awesome</p>
-      </div>
-      
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold text-success">products</h5>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">TheProviders</a>
-          </p>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">Creativity</a>
-          </p>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">Sourcefiles</a>
-          </p>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">Protein</a>
-          </p>
-        </div>
-        
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold text-success">Usefull links</h5>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">How to be huge</a>
-          </p>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">Eat healthier</a>
-          </p>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">Best resaults</a>
-          </p>
-          <p>
-            <a href="#" class="text-white" style="text-decoration: none;">Help</a>
-          </p>
-        </div>
-
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold text-success ">Contact </h5>
-          <p>
-            <i class="bi bi-house-door-fill"></i> Leof. Kamaterou 134, 134 51
-          </p>
-          <p >
-            <i class="bi bi-envelope-at-fill"></i> Name@gmail.com
-          </p>
-          <p >
-            <i class="bi bi-telephone-fill"></i> 2102447229
-          </p>
-
-        </div>
-    </div>
-    <hr class="mb-4">
-    <div class="text-start">
-      <div class="col-md-7 com-lg-8">
-        <p>copyright @2024 All rights reserved by:
-          <a href="#" style="text-decoration: none;">
-          <strong class="text-success ">HYLK FITNESS</strong>
-        </a>
-      </p>
-      </div>
-    </div>
-
-  </div>
-</footer>
-
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6Ey2gwH0DkMbMbIeT97HbY08KNZ7PeXN2jamrPcsxkXopJ1pcV8Qv646cDf1"
-crossorigin="anonymous"
-></script>
-<script src="js/index.js"></script>
+      <%@include file="footer.jsp" %>
 
       
   </body>

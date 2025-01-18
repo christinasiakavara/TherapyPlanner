@@ -6,7 +6,7 @@
 <%@ page import="DETsCode.Psychologist.PsychologistDAO" %>
 <%
     // Retrieve user from session or mock user for testing
-    User user = session.getAttribute("userObj2024");
+    User user = (User) session.getAttribute("userObj2024");
     if (user == null) {
         user = new User(1, "John", "Doe", "john.doe@example.com", "johndoe", "password123");
     }

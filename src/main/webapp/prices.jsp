@@ -87,7 +87,7 @@
                         <p>1 Therapy Session</p>
                         <p>Email Support</p>
                         <p>Access to Resources</p>
-                        <a href="register.jsp?plan=basic" class="btn btn-success">Choose Plan</a>
+                        <a href="book.jsp?plan=basic" class="btn btn-success">Choose Plan</a>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         <p>4 Therapy Sessions</p>
                         <p>Priority Email Support</p>
                         <p>Access to Premium Resources</p>
-                        <a href="register.jsp?plan=standard" class="btn btn-success">Choose Plan</a>
+                        <a href="book.jsp?plan=standard" class="btn btn-success">Choose Plan</a>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                         <p>Unlimited Therapy Sessions</p>
                         <p>24/7 Support</p>
                         <p>Exclusive Resources</p>
-                        <a href="register.jsp?plan=premium" class="btn btn-success">Choose Plan</a>
+                        <a href="book.jsp?plan=premium" class="btn btn-success">Choose Plan</a>
                     </div>
                 </div>
             </div>

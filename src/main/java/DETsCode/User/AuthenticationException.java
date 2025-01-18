@@ -1,4 +1,4 @@
-package DETsCode.TherPlanner;
+package DETsCode.User;
 
 public class AuthenticationException extends Exception {
     public AuthenticationException(String message) {

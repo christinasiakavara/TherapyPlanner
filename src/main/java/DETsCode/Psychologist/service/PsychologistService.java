@@ -20,7 +20,7 @@ public class PsychologistService {
 
 
     private List<String> notes = new ArrayList<>();
-    List<Psychologist> psychologists = PsychologistDAO.getInstance().getAll();
+    List<Psychologist> psychologists = PsychologistDAO.getInstance().getAvailablePsychologists();
 
     /**
      * Validates if the provided timeslot is available and adds it to the list of timeslots
@@ -31,7 +31,8 @@ public class PsychologistService {
      */
     public void updateAvailability(Psychologist psychologist, Timeslot timeslot) {
         if (!validateTimeslot(psychologist, timeslot)) {
-            throw new IllegalArgumentException("The timeslot requested ( " + timeslot.toString() + ")overlaps the existing timeslots of the psychologist");
+            throw new IllegalArgumentException("The timeslot requested ( " + timeslot.toString() + ")overlaps the " +
+                    "existing timeslots of the psychologist");
         }
         psychologist.getAvailability().add(timeslot);
     }

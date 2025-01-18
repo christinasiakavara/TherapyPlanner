@@ -1,9 +1,10 @@
 package DETsCode.Admin;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AdminTest {
     private Admin admin;
@@ -13,7 +14,7 @@ class AdminTest {
     @Test
     void givenRoleidNotEqualTo3_whenInsertAdmin_thenReturnErrorMessage() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            admin = new Admin(null, null, null, null, null, null, null, null, 0, 2, 0, null);
+            admin = new Admin();
         });
         String expectedMessage = wrongRoleidMessage;
         String actualMessage = exception.getMessage();

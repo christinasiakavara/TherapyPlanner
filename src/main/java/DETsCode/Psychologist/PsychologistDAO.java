@@ -1,5 +1,6 @@
 package DETsCode.Psychologist;
 
+import DETsCode.User.User;
 import DETsCode.db.DatabaseConnection;
 
 import java.sql.PreparedStatement;
@@ -24,30 +25,56 @@ public class PsychologistDAO {
         return instance;
     }
 
-    public List<Psychologist> getAll() {
-        List<Psychologist> psychologists = new ArrayList<>();
+    public List<Psychologist> getAvailablePsychologists() {
         try {
-            PreparedStatement query = conn.getConnection().prepareStatement("SELECT * FROM Psychologists;");
+            List<Psychologist> psychologists = new ArrayList<>();
+            PreparedStatement query = conn.getConnection().prepareStatement("SELECT * FROM therapists WHERE available" +
+                    " = " +
+                    "1;");
             ResultSet rs = query.executeQuery();
             while (rs.next()) {
-                Psychologist psychologist = new Psychologist(rs.getString("first_name"),
-                        rs.getString("last_name"),
-                        rs.getString("email"),
-                        rs.getString("username"),
-                        null,
-                        rs.getString("number"),
-                        rs.getString("address"),
-                        rs.getString("birthdate"),
-                        rs.getInt("user_id"),
-                        rs.getInt("role"),
-                        rs.getInt("id"),
-                        null,
-                        rs.getString("bio"));
+                int psychologistId = rs.getInt("psychologist_id");
+                User user = getUserFromPsychologist(psychologistId);
+                Psychologist psychologist = constructPsychologist(rs, user);
                 psychologists.add(psychologist);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            rs.close();
+            query.close();
+
+            return psychologists;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return psychologists;
+    }
+
+    public static Psychologist constructPsychologist(ResultSet rs, User user) throws SQLException {
+        Psychologist psychologist = new Psychologist(
+                user,
+                rs.getInt("therapist_id"),
+                rs.getString("title"),
+                rs.getString("approach"),
+                rs.getString("bio"),
+                rs.getString("specialties"),
+                rs.getString("education"),
+                rs.getString("training"),
+                rs.getInt("available") == 1, // Explicit boolean conversion
+                rs.getString("photo")
+        );
+        return psychologist;
+    }
+
+    private User getUserFromPsychologist(int psychologistId) throws SQLException {
+        PreparedStatement usersQuery = conn.getConnection().prepareStatement("SELECT users.* FROM user_therapist" +
+                " JOIN therapists ON user_therapist.therapist_id = therapists.therapist_id  " +
+                "WHERE user_therapist.therapist_id = ? LIMIT 1");
+        usersQuery.setInt(1, psychologistId);
+        ResultSet usersSet = usersQuery.executeQuery();
+        int id = usersSet.getInt("id");
+        String firstName = usersSet.getString("firstName");
+        String lastName = usersSet.getString("lastname");
+        String username = usersSet.getString("username");
+        String email = usersSet.getString("email");
+        String password = usersSet.getString("password");
+        return new User(id, firstName, lastName, email, username, password);
     }
 }

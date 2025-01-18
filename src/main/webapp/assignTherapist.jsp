@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="therplanner.*" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, java.sql.*" %>
+<%@ page import="DETsCode.User.User" %>
 
 <%
     // Check if the user is logged in
@@ -20,9 +20,7 @@
 
         try {
             // Assign therapist to the user
-            DB db = new DB();
             String query = "INSERT INTO user_therapist (user_id, therapist_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE therapist_id = VALUES(therapist_id)";
-            con = db.getConnection();
             stmt = con.prepareStatement(query);
             stmt.setInt(1, user.getId());
             stmt.setInt(2, Integer.parseInt(therapistId));

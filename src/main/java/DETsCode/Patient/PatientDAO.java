@@ -1,7 +1,8 @@
 package DETsCode.Patient;
 
-import DETsCode.db.DatabaseConnection;
 import DETsCode.TherapySession.TherapySessionDAO;
+import DETsCode.db.DatabaseConnection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,17 +31,14 @@ public class PatientDAO {
             PreparedStatement query = conn.getConnection().prepareStatement("SELECT * FROM patient;");
             ResultSet rs = query.executeQuery();
             while (rs.next()) {
-                int patiendid=rs.getInt("id");
-                Patient patient = new Patient(rs.getString("first_name"),
+                int patiendid = rs.getInt("id");
+                Patient patient = new Patient(
+                        rs.getInt("user_id"),
+                        rs.getString("first_name"),
                         rs.getString("last_name"),
                         rs.getString("email"),
                         rs.getString("username"),
                         null,
-                        rs.getString("number"),
-                        rs.getString("address"),
-                        rs.getString("birthdate"),
-                        rs.getInt("user_id"),
-                        rs.getInt("role"),
                         rs.getString("medical_history"),
                         rs.getInt("id"),
                         TherapySessionDAO.getSessionsByPatientID(patiendid));
@@ -53,22 +51,19 @@ public class PatientDAO {
 
     }
 
-    public boolean insertpatient(Patient patient) {
+    public boolean insertPatient(Patient patient) {
         try {
-            PreparedStatement stmt = conn.getConnection().prepareStatement("INSERT INTO patient(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID, medicalHistory, patiendid, currentSessions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("INSERT INTO patient(firstname, lastname, " +
+                    "email, username, password, medicalHistory, " +
+                    "patiendid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, patient.getFirstname());
             stmt.setString(2, patient.getLastname());
             stmt.setString(3, patient.getEmail());
             stmt.setString(4, patient.getUsername());
             stmt.setString(5, patient.getPassword());
-            stmt.setString(6, patient.getNumber());
-            stmt.setString(7, patient.getAddress());
-            stmt.setString(8, patient.getBirthdate());
-            stmt.setInt(9, patient.getUserid());
-            stmt.setInt(10, patient.getRoleID());
-            stmt.setString(11, patient.getMedicalHistory());
-            stmt.setInt(12, patient.getPatiendid());
-//            stmt.setNull(13,); //???
+            stmt.setString(6, patient.getMedicalHistory());
+            stmt.setInt(7, patient.getPatiendid());
+//            stmt.setInt(8, patient.getCurrentSessions());
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {

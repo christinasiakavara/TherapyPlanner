@@ -1,18 +1,22 @@
 package DETsCode.Admin;
 
-import java.util.List;
-
 import DETsCode.User.User;
 
-public class Admin  extends User{
+import java.util.List;
+
+public class Admin extends User {
     private int adminID;
     private List<String> permissions;
 
     // Κατασκευαστής
-    public Admin(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID,int adminID, List<String> permissions) {
-        super(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID);
+    public Admin(String firstname, String lastname, String email, String username, String password, int adminID,
+                 List<String> permissions) {
+        super(firstname, lastname, email, username, password);
         this.adminID = adminID;
         this.permissions = permissions;
+    }
+
+    public Admin() {
     }
 
     // Getters και Setters
@@ -32,12 +36,12 @@ public class Admin  extends User{
         this.permissions = permissions;
     }
 
+
     @Override
     public String toString() {
-        return "{" +
-            " adminID='" + getAdminID() + "'" +
-            ", permissions='" + getPermissions() + "'" +
-            "}";
+        return "Admin{" +
+                "adminID=" + adminID +
+                ", permissions=" + permissions +
+                '}';
     }
-
 }

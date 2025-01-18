@@ -1,8 +1,10 @@
 package DETsCode.Patient;
 
 import org.junit.jupiter.api.Disabled;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PatientTest {
     private Patient patient;
@@ -12,7 +14,7 @@ class PatientTest {
     @Test
     void givenRoleidNotEqualTo2_whenInsertPatient_thenReturnErrorMessage() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            patient = new Patient(null, null, null, null, null, null, null, null, 0, 3, null, 0, null);
+            patient = new Patient();
         });
         String expectedMessage = wrongRoleidMessage;
         String actualMessage = exception.getMessage();

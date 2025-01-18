@@ -1,27 +1,41 @@
 package DETsCode.Psychologist;
 
 import DETsCode.Timeslot.Timeslot;
+import DETsCode.Timeslot.TimeslotDAO;
 import DETsCode.User.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Psychologist extends User {
-    
+
     private int psychologistId;
-    private String specialization;
+    private boolean available;
     private String bio;
-    private List<Timeslot> availability;
-    private List<Float> rating;
+    private String training;
+    private String education;
+    private String photo;
+    private String approach;
+    private String specialties;
+    private String title;
 
 
-    public Psychologist(String firstname, String lastname, String email, String username, String password, String number, String address, String birthdate, int userid, int roleID, int psychologistId, List<Float> rating, String bio) {
-        super(firstname, lastname, email, username, password, number, address, birthdate, userid, roleID);
-        this.bio = bio;
+    public Psychologist(User user, int psychologistId, String title, String approach, String bio, String specialties,
+                        String education, String training, boolean available, String photo) {
+        super(user);
         this.psychologistId = psychologistId;
-        this.availability = new ArrayList<>();
-        this.rating = rating;
+        this.bio = bio;
+        this.available = available;
+        this.approach = approach;
+        this.education = education;
+        this.specialties = specialties;
+        this.training = training;
+        this.photo = photo;
     }
+
+    public Psychologist() {
+
+    }
+
 
     public int getPsychologistId() {
         return psychologistId;
@@ -29,6 +43,14 @@ public class Psychologist extends User {
 
     public void setPsychologistId(int psychologistId) {
         this.psychologistId = psychologistId;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public String getBio() {
@@ -39,30 +61,70 @@ public class Psychologist extends User {
         this.bio = bio;
     }
 
+    public String getTraining() {
+        return training;
+    }
+
+    public void setTraining(String training) {
+        this.training = training;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getApproach() {
+        return approach;
+    }
+
+    public void setApproach(String approach) {
+        this.approach = approach;
+    }
+
+    public String getSpecialties() {
+        return specialties;
+    }
+
+    public void setSpecialties(String specialties) {
+        this.specialties = specialties;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public List<Timeslot> getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(List<Timeslot> availability) {
-        this.availability = availability;
-    }
-
-    public List<Float> getRating() {
-        return rating;
-    }
-
-    public void setRating(List<Float> rating) {
-        this.rating = rating;
+        return TimeslotDAO.getInstance().getAvailableTimeslots(this);
     }
 
     @Override
     public String toString() {
         return "Psychologist{" +
                 "psychologistId=" + psychologistId +
-                "Bio" + bio
-                +
-                ", availability=" + availability +
-                ", rating=" + rating +
+                ", available=" + available +
+                ", bio='" + bio + '\'' +
+                ", training='" + training + '\'' +
+                ", education='" + education + '\'' +
+                ", photo='" + photo + '\'' +
+                ", approach='" + approach + '\'' +
+                ", specialties='" + specialties + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

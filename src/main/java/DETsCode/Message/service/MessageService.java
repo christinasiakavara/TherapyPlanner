@@ -1,9 +1,9 @@
 package DETsCode.Message.service;
 
-import java.util.List;
-
 import DETsCode.Message.Message;
 import DETsCode.Message.MessageDao;
+
+import java.util.List;
 
 public class MessageService {
 
@@ -14,7 +14,7 @@ public class MessageService {
     }
 
     public boolean sendMessage(Message message) {
-        if (message == null|| message.getContent() == null || message.getTimestamp() == null) {
+        if (message == null || message.getContent() == null || message.getTimestamp() == null) {
             throw new IllegalArgumentException("Invalid message data");
         }
         return messageDAO.addmessage(message);
@@ -27,10 +27,10 @@ public class MessageService {
         return messageDAO.getMessagesByChatId(chatId);
     }
 
-    public boolean deleteMessage(int messageId) {
-        if (messageId <= 0) {
+    public boolean deleteMessage(Message message) {
+        if (message.getMessageid() <= 0) {
             throw new IllegalArgumentException("Invalid message ID");
         }
-        return messageDAO.deleteMessage(messageId);
+        return messageDAO.deleteMessage(message);
     }
 }

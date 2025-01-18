@@ -1,4 +1,4 @@
-package DETsCode.ExtraFeatures;
+package DETsCode.Chat;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

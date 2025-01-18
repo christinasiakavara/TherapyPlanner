@@ -3,6 +3,7 @@ package DETsCode.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class DatabaseConnection {
 
@@ -16,9 +17,10 @@ public class DatabaseConnection {
 
     private DatabaseConnection() {
         try {
-            Class.forName("com.mysql.c.jdbc.Driver");
             this.connection = DriverManager.getConnection(jdbcUrl, dbUsername, dbPassword);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println(Arrays.toString(e.getStackTrace()));
             throw new RuntimeException(e);
         }
     }
@@ -33,14 +35,14 @@ public class DatabaseConnection {
     public Connection getConnection() {
         return connection;
     }
-    
+
     public void close() throws SQLException {
         try {
-            if(connection!=null) {
+            if (connection != null) {
                 connection.close();
             }
         } catch (SQLException e) {
             throw new SQLException("Could not close connection with the Database Server: " + e.getMessage());
-        } 
+        }
     }
 }

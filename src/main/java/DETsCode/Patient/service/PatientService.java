@@ -20,11 +20,10 @@ public class PatientService {
         }
     }
 
-
     public void bookSession(Timeslot requestedtimeslot, Psychologist psychologist) {
         boolean availability = false;
-        for (Timeslot scheduledslots : psychologist.getAvailability()) {
-            if (requestedtimeslot.overlaps(scheduledslots)) {
+        for (Timeslot timeslots : psychologist.getAvailability()) {
+            if (requestedtimeslot.overlaps(timeslots)) {
                 psychologistService.updateAvailability(psychologist, requestedtimeslot);
             }
         }
@@ -32,5 +31,4 @@ public class PatientService {
             throw new IllegalArgumentException("Your requested session overlaps the existing one.");
         }
     }
-
 }

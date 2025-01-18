@@ -6,15 +6,17 @@ import DETsCode.Payment.Payment;
 import DETsCode.Payment.PaymentDao;
 
 public class Paymentservice {
+
     private final PaymentDao paymentDAO;
-        public Paymentservice() {
-            this.paymentDAO = PaymentDao.getInstance();
-
+    
+    public Paymentservice() {
+        this.paymentDAO = PaymentDao.getInstance();
     }
-    public List<Payment> viewPaymentHistory( int patientID) {
+
+    public List<Payment> viewPaymentHistory(int patientID) {
         return paymentDAO.getPaymentsByPatientID(patientID);
-
     }
+
     public boolean processPayment(Payment payment) {
         return paymentDAO.addPayment(payment);
     }

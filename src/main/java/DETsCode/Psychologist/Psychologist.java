@@ -7,14 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Psychologist extends User {
+    
     private int psychologistId;
-
     private String specialization;
-
     private String bio;
-
     private List<Timeslot> availability;
-
     private List<Float> rating;
 
 

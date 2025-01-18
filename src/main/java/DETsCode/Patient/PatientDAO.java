@@ -1,6 +1,5 @@
 package DETsCode.Patient;
 
-
 import DETsCode.db.DatabaseConnection;
 import DETsCode.TherapySession.TherapySessionDAO;
 import java.sql.PreparedStatement;

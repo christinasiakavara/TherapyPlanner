@@ -1,4 +1,5 @@
 package DETsCode.Payment;
+
 import DETsCode.db.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,8 +105,6 @@ public class PaymentDao{
                 e.printStackTrace();
             }
             return false;
-            
-
-}
+        }
 }
 

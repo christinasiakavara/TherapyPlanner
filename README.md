@@ -25,11 +25,11 @@
     - **`DETsCode.TherapySession`**: Πακέτο για τη βασική δομή για τη διαχείριση ραντεβού θεραπείας.
     - **`DETsCode.User`**: Πακέτο για τη διαχείριση χρηστών.
         - **`DETsCode.Psychologist`**: Πακέτο για τη διαχείριση των ψυχολόγων.
-            -**`DETsCode.Psychologist.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Psychologist.
+            - **`DETsCode.Psychologist.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Psychologist.
         - **`DETsCode.Patient`**: Πακέτο για τη διαχείριση των θεραπευόμενων.
-            -**`DETsCode.Patient.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Patient.
+            - **`DETsCode.Patient.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Patient.
         - **`DETsCode.Payment`**: Πακέτο για τη διαχείριση πληρωμών.
-            -**`DETsCode.Payment.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Payment.
+            - **`DETsCode.Payment.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Payment.
         - **`DETsCode.Admin`**: Πακέτο για την διαχείριση των διαχειριστών.
             - **`DETsCode.Admin.service`**: Πακέτο για τη διαχείριση της λειτουργικότητας της κλάσης Admin.
     - **`DETsCode.Timeslot`**: Πακέτο για την διαχείρηση των προγραμμάτων.
